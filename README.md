@@ -1,4 +1,4 @@
-<img src="logo.png" width="200" alt="Your alt text">
+<img src="logo.png" width="500" alt="Your alt text">
 
 **Strata** is a **next‑generation, streaming‑first distributed datastore**.  
 It combines the **speed of in‑memory systems** with the **durability of Pebble (LSM engine)**,  
