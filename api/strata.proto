@@ -1,0 +1,95 @@
+syntax = "proto3";
+
+package Strata;
+option go_package = "strata/api;api";
+
+service Strata {
+  rpc Set(SetRequest) returns (SetResponse);
+  rpc Get(GetRequest) returns (GetResponse);
+  rpc Del(DelRequest) returns (DelResponse);
+
+  // List 
+  rpc LPush(ListPushRequest) returns (ListPushResponse);
+  rpc LPop(ListPopRequest) returns (ListPopResponse);
+  rpc RPush(ListPushRequest) returns (ListPushResponse);
+  rpc RPop(ListPopRequest) returns (ListPopResponse);
+
+  // Doc
+  rpc DocSet(DocSetRequest) returns (DocSetResponse);
+  rpc DocGet(DocGetRequest) returns (DocGetResponse);
+  rpc DocDel(DocDelRequest) returns (DocDelResponse);
+}
+
+// The value is just a unique identifier for the key and not the actual value
+
+message SetRequest {
+  string key = 1;
+  string value = 2;
+}
+
+message SetResponse {
+  bool success = 1;
+}
+
+message GetRequest {
+  string key = 1;
+}
+
+message GetResponse {
+  string value = 1;
+  bool found = 2;
+}
+
+message DelRequest {
+  string key = 1;
+}
+
+message DelResponse {
+  bool success = 1;
+}
+
+message ListPushRequest {
+  string key = 1;
+  string value = 2;
+}
+
+message ListPushResponse {
+  int64 length = 1;
+}
+
+message ListPopRequest {
+  string key = 1;
+}
+
+message ListPopResponse {
+  string value = 1;
+  bool success = 2;
+}
+
+message DocSetRequest {
+  string key = 1;
+  string json = 2;
+}
+
+message DocSetResponse {
+  bool success = 1;
+}
+
+message DocGetRequest {
+  string key = 1;
+  string path = 2;
+}
+
+message DocGetResponse {
+  string json = 1;
+  bool found = 2;
+}
+
+message DocDelRequest {
+  string key = 1;
+}
+
+message DocDelResponse {
+  bool success = 1;
+}
+
