@@ -51,21 +51,8 @@ Strata is designed to be:
 
 ## 🏗 Architecture
 
-```
-[ Client (gRPC/RESP) ]
-          │
-          ▼
-[ Server Layer ]   ← gRPC handlers
-          │
-          ▼
-[ Primitives Layer ]   ← Strings, Lists, Documents, Sorted Sets
-          │
-          ▼
-[ Engine Layer ]   ← Pebble (KV store)
-          │
-          ▼
-[ Disk / Data files ]
-```
+<img width="805" height="551" alt="image" src="https://github.com/user-attachments/assets/e7bcc7ad-07ed-460d-8593-5089d9e1cdc3" />
+
 
 - **Server Layer** → routes requests (gRPC/RESP)  
 - **Primitives Layer** → implements Redis‑like commands  
