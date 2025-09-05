@@ -19,16 +19,18 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Strata_Set_FullMethodName    = "/Strata.Strata/Set"
-	Strata_Get_FullMethodName    = "/Strata.Strata/Get"
-	Strata_Del_FullMethodName    = "/Strata.Strata/Del"
-	Strata_LPush_FullMethodName  = "/Strata.Strata/LPush"
-	Strata_LPop_FullMethodName   = "/Strata.Strata/LPop"
-	Strata_RPush_FullMethodName  = "/Strata.Strata/RPush"
-	Strata_RPop_FullMethodName   = "/Strata.Strata/RPop"
-	Strata_DocSet_FullMethodName = "/Strata.Strata/DocSet"
-	Strata_DocGet_FullMethodName = "/Strata.Strata/DocGet"
-	Strata_DocDel_FullMethodName = "/Strata.Strata/DocDel"
+	Strata_Set_FullMethodName         = "/Strata.Strata/Set"
+	Strata_Get_FullMethodName         = "/Strata.Strata/Get"
+	Strata_Del_FullMethodName         = "/Strata.Strata/Del"
+	Strata_SetEx_FullMethodName       = "/Strata.Strata/SetEx"
+	Strata_LPush_FullMethodName       = "/Strata.Strata/LPush"
+	Strata_LPop_FullMethodName        = "/Strata.Strata/LPop"
+	Strata_RPush_FullMethodName       = "/Strata.Strata/RPush"
+	Strata_RPop_FullMethodName        = "/Strata.Strata/RPop"
+	Strata_DocSet_FullMethodName      = "/Strata.Strata/DocSet"
+	Strata_DocGet_FullMethodName      = "/Strata.Strata/DocGet"
+	Strata_DocDel_FullMethodName      = "/Strata.Strata/DocDel"
+	Strata_XReadStream_FullMethodName = "/Strata.Strata/XReadStream"
 )
 
 // StrataClient is the client API for Strata service.
@@ -38,6 +40,7 @@ type StrataClient interface {
 	Set(ctx context.Context, in *SetRequest, opts ...grpc.CallOption) (*SetResponse, error)
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	Del(ctx context.Context, in *DelRequest, opts ...grpc.CallOption) (*DelResponse, error)
+	SetEx(ctx context.Context, in *SetExRequest, opts ...grpc.CallOption) (*SetExResponse, error)
 	// List
 	LPush(ctx context.Context, in *ListPushRequest, opts ...grpc.CallOption) (*ListPushResponse, error)
 	LPop(ctx context.Context, in *ListPopRequest, opts ...grpc.CallOption) (*ListPopResponse, error)
@@ -47,6 +50,8 @@ type StrataClient interface {
 	DocSet(ctx context.Context, in *DocSetRequest, opts ...grpc.CallOption) (*DocSetResponse, error)
 	DocGet(ctx context.Context, in *DocGetRequest, opts ...grpc.CallOption) (*DocGetResponse, error)
 	DocDel(ctx context.Context, in *DocDelRequest, opts ...grpc.CallOption) (*DocDelResponse, error)
+	// Stream
+	XReadStream(ctx context.Context, in *StreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamResponse], error)
 }
 
 type strataClient struct {
@@ -81,6 +86,16 @@ func (c *strataClient) Del(ctx context.Context, in *DelRequest, opts ...grpc.Cal
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DelResponse)
 	err := c.cc.Invoke(ctx, Strata_Del_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *strataClient) SetEx(ctx context.Context, in *SetExRequest, opts ...grpc.CallOption) (*SetExResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SetExResponse)
+	err := c.cc.Invoke(ctx, Strata_SetEx_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -157,6 +172,25 @@ func (c *strataClient) DocDel(ctx context.Context, in *DocDelRequest, opts ...gr
 	return out, nil
 }
 
+func (c *strataClient) XReadStream(ctx context.Context, in *StreamRequest, opts ...grpc.CallOption) (grpc.ServerStreamingClient[StreamResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &Strata_ServiceDesc.Streams[0], Strata_XReadStream_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[StreamRequest, StreamResponse]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Strata_XReadStreamClient = grpc.ServerStreamingClient[StreamResponse]
+
 // StrataServer is the server API for Strata service.
 // All implementations must embed UnimplementedStrataServer
 // for forward compatibility.
@@ -164,6 +198,7 @@ type StrataServer interface {
 	Set(context.Context, *SetRequest) (*SetResponse, error)
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	Del(context.Context, *DelRequest) (*DelResponse, error)
+	SetEx(context.Context, *SetExRequest) (*SetExResponse, error)
 	// List
 	LPush(context.Context, *ListPushRequest) (*ListPushResponse, error)
 	LPop(context.Context, *ListPopRequest) (*ListPopResponse, error)
@@ -173,6 +208,8 @@ type StrataServer interface {
 	DocSet(context.Context, *DocSetRequest) (*DocSetResponse, error)
 	DocGet(context.Context, *DocGetRequest) (*DocGetResponse, error)
 	DocDel(context.Context, *DocDelRequest) (*DocDelResponse, error)
+	// Stream
+	XReadStream(*StreamRequest, grpc.ServerStreamingServer[StreamResponse]) error
 	mustEmbedUnimplementedStrataServer()
 }
 
@@ -191,6 +228,9 @@ func (UnimplementedStrataServer) Get(context.Context, *GetRequest) (*GetResponse
 }
 func (UnimplementedStrataServer) Del(context.Context, *DelRequest) (*DelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Del not implemented")
+}
+func (UnimplementedStrataServer) SetEx(context.Context, *SetExRequest) (*SetExResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetEx not implemented")
 }
 func (UnimplementedStrataServer) LPush(context.Context, *ListPushRequest) (*ListPushResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LPush not implemented")
@@ -212,6 +252,9 @@ func (UnimplementedStrataServer) DocGet(context.Context, *DocGetRequest) (*DocGe
 }
 func (UnimplementedStrataServer) DocDel(context.Context, *DocDelRequest) (*DocDelResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DocDel not implemented")
+}
+func (UnimplementedStrataServer) XReadStream(*StreamRequest, grpc.ServerStreamingServer[StreamResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method XReadStream not implemented")
 }
 func (UnimplementedStrataServer) mustEmbedUnimplementedStrataServer() {}
 func (UnimplementedStrataServer) testEmbeddedByValue()                {}
@@ -284,6 +327,24 @@ func _Strata_Del_Handler(srv interface{}, ctx context.Context, dec func(interfac
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(StrataServer).Del(ctx, req.(*DelRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Strata_SetEx_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetExRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(StrataServer).SetEx(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Strata_SetEx_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(StrataServer).SetEx(ctx, req.(*SetExRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -414,6 +475,17 @@ func _Strata_DocDel_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Strata_XReadStream_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(StreamRequest)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(StrataServer).XReadStream(m, &grpc.GenericServerStream[StreamRequest, StreamResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type Strata_XReadStreamServer = grpc.ServerStreamingServer[StreamResponse]
+
 // Strata_ServiceDesc is the grpc.ServiceDesc for Strata service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -432,6 +504,10 @@ var Strata_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Del",
 			Handler:    _Strata_Del_Handler,
+		},
+		{
+			MethodName: "SetEx",
+			Handler:    _Strata_SetEx_Handler,
 		},
 		{
 			MethodName: "LPush",
@@ -462,6 +538,12 @@ var Strata_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _Strata_DocDel_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "XReadStream",
+			Handler:       _Strata_XReadStream_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "api/strata.proto",
 }

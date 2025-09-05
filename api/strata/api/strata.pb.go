@@ -117,6 +117,110 @@ func (x *SetResponse) GetSuccess() bool {
 	return false
 }
 
+type SetExRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Key           string                 `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+	Value         string                 `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+	Ttl           int64                  `protobuf:"varint,3,opt,name=ttl,proto3" json:"ttl,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetExRequest) Reset() {
+	*x = SetExRequest{}
+	mi := &file_api_strata_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetExRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetExRequest) ProtoMessage() {}
+
+func (x *SetExRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_strata_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetExRequest.ProtoReflect.Descriptor instead.
+func (*SetExRequest) Descriptor() ([]byte, []int) {
+	return file_api_strata_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *SetExRequest) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *SetExRequest) GetValue() string {
+	if x != nil {
+		return x.Value
+	}
+	return ""
+}
+
+func (x *SetExRequest) GetTtl() int64 {
+	if x != nil {
+		return x.Ttl
+	}
+	return 0
+}
+
+type SetExResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SetExResponse) Reset() {
+	*x = SetExResponse{}
+	mi := &file_api_strata_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SetExResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetExResponse) ProtoMessage() {}
+
+func (x *SetExResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_strata_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetExResponse.ProtoReflect.Descriptor instead.
+func (*SetExResponse) Descriptor() ([]byte, []int) {
+	return file_api_strata_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *SetExResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
 type GetRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Key           string                 `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
@@ -126,7 +230,7 @@ type GetRequest struct {
 
 func (x *GetRequest) Reset() {
 	*x = GetRequest{}
-	mi := &file_api_strata_proto_msgTypes[2]
+	mi := &file_api_strata_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -138,7 +242,7 @@ func (x *GetRequest) String() string {
 func (*GetRequest) ProtoMessage() {}
 
 func (x *GetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_strata_proto_msgTypes[2]
+	mi := &file_api_strata_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -151,7 +255,7 @@ func (x *GetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetRequest.ProtoReflect.Descriptor instead.
 func (*GetRequest) Descriptor() ([]byte, []int) {
-	return file_api_strata_proto_rawDescGZIP(), []int{2}
+	return file_api_strata_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetRequest) GetKey() string {
@@ -171,7 +275,7 @@ type GetResponse struct {
 
 func (x *GetResponse) Reset() {
 	*x = GetResponse{}
-	mi := &file_api_strata_proto_msgTypes[3]
+	mi := &file_api_strata_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -183,7 +287,7 @@ func (x *GetResponse) String() string {
 func (*GetResponse) ProtoMessage() {}
 
 func (x *GetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_strata_proto_msgTypes[3]
+	mi := &file_api_strata_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -196,7 +300,7 @@ func (x *GetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetResponse.ProtoReflect.Descriptor instead.
 func (*GetResponse) Descriptor() ([]byte, []int) {
-	return file_api_strata_proto_rawDescGZIP(), []int{3}
+	return file_api_strata_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetResponse) GetValue() string {
@@ -222,7 +326,7 @@ type DelRequest struct {
 
 func (x *DelRequest) Reset() {
 	*x = DelRequest{}
-	mi := &file_api_strata_proto_msgTypes[4]
+	mi := &file_api_strata_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -234,7 +338,7 @@ func (x *DelRequest) String() string {
 func (*DelRequest) ProtoMessage() {}
 
 func (x *DelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_strata_proto_msgTypes[4]
+	mi := &file_api_strata_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -247,7 +351,7 @@ func (x *DelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DelRequest.ProtoReflect.Descriptor instead.
 func (*DelRequest) Descriptor() ([]byte, []int) {
-	return file_api_strata_proto_rawDescGZIP(), []int{4}
+	return file_api_strata_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *DelRequest) GetKey() string {
@@ -266,7 +370,7 @@ type DelResponse struct {
 
 func (x *DelResponse) Reset() {
 	*x = DelResponse{}
-	mi := &file_api_strata_proto_msgTypes[5]
+	mi := &file_api_strata_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -278,7 +382,7 @@ func (x *DelResponse) String() string {
 func (*DelResponse) ProtoMessage() {}
 
 func (x *DelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_strata_proto_msgTypes[5]
+	mi := &file_api_strata_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -291,7 +395,7 @@ func (x *DelResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DelResponse.ProtoReflect.Descriptor instead.
 func (*DelResponse) Descriptor() ([]byte, []int) {
-	return file_api_strata_proto_rawDescGZIP(), []int{5}
+	return file_api_strata_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *DelResponse) GetSuccess() bool {
@@ -311,7 +415,7 @@ type ListPushRequest struct {
 
 func (x *ListPushRequest) Reset() {
 	*x = ListPushRequest{}
-	mi := &file_api_strata_proto_msgTypes[6]
+	mi := &file_api_strata_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -323,7 +427,7 @@ func (x *ListPushRequest) String() string {
 func (*ListPushRequest) ProtoMessage() {}
 
 func (x *ListPushRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_strata_proto_msgTypes[6]
+	mi := &file_api_strata_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -336,7 +440,7 @@ func (x *ListPushRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPushRequest.ProtoReflect.Descriptor instead.
 func (*ListPushRequest) Descriptor() ([]byte, []int) {
-	return file_api_strata_proto_rawDescGZIP(), []int{6}
+	return file_api_strata_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *ListPushRequest) GetKey() string {
@@ -362,7 +466,7 @@ type ListPushResponse struct {
 
 func (x *ListPushResponse) Reset() {
 	*x = ListPushResponse{}
-	mi := &file_api_strata_proto_msgTypes[7]
+	mi := &file_api_strata_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -374,7 +478,7 @@ func (x *ListPushResponse) String() string {
 func (*ListPushResponse) ProtoMessage() {}
 
 func (x *ListPushResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_strata_proto_msgTypes[7]
+	mi := &file_api_strata_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -387,7 +491,7 @@ func (x *ListPushResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPushResponse.ProtoReflect.Descriptor instead.
 func (*ListPushResponse) Descriptor() ([]byte, []int) {
-	return file_api_strata_proto_rawDescGZIP(), []int{7}
+	return file_api_strata_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *ListPushResponse) GetLength() int64 {
@@ -406,7 +510,7 @@ type ListPopRequest struct {
 
 func (x *ListPopRequest) Reset() {
 	*x = ListPopRequest{}
-	mi := &file_api_strata_proto_msgTypes[8]
+	mi := &file_api_strata_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -418,7 +522,7 @@ func (x *ListPopRequest) String() string {
 func (*ListPopRequest) ProtoMessage() {}
 
 func (x *ListPopRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_strata_proto_msgTypes[8]
+	mi := &file_api_strata_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -431,7 +535,7 @@ func (x *ListPopRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPopRequest.ProtoReflect.Descriptor instead.
 func (*ListPopRequest) Descriptor() ([]byte, []int) {
-	return file_api_strata_proto_rawDescGZIP(), []int{8}
+	return file_api_strata_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *ListPopRequest) GetKey() string {
@@ -451,7 +555,7 @@ type ListPopResponse struct {
 
 func (x *ListPopResponse) Reset() {
 	*x = ListPopResponse{}
-	mi := &file_api_strata_proto_msgTypes[9]
+	mi := &file_api_strata_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -463,7 +567,7 @@ func (x *ListPopResponse) String() string {
 func (*ListPopResponse) ProtoMessage() {}
 
 func (x *ListPopResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_strata_proto_msgTypes[9]
+	mi := &file_api_strata_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -476,7 +580,7 @@ func (x *ListPopResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListPopResponse.ProtoReflect.Descriptor instead.
 func (*ListPopResponse) Descriptor() ([]byte, []int) {
-	return file_api_strata_proto_rawDescGZIP(), []int{9}
+	return file_api_strata_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *ListPopResponse) GetValue() string {
@@ -503,7 +607,7 @@ type DocSetRequest struct {
 
 func (x *DocSetRequest) Reset() {
 	*x = DocSetRequest{}
-	mi := &file_api_strata_proto_msgTypes[10]
+	mi := &file_api_strata_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -515,7 +619,7 @@ func (x *DocSetRequest) String() string {
 func (*DocSetRequest) ProtoMessage() {}
 
 func (x *DocSetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_strata_proto_msgTypes[10]
+	mi := &file_api_strata_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -528,7 +632,7 @@ func (x *DocSetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DocSetRequest.ProtoReflect.Descriptor instead.
 func (*DocSetRequest) Descriptor() ([]byte, []int) {
-	return file_api_strata_proto_rawDescGZIP(), []int{10}
+	return file_api_strata_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *DocSetRequest) GetKey() string {
@@ -554,7 +658,7 @@ type DocSetResponse struct {
 
 func (x *DocSetResponse) Reset() {
 	*x = DocSetResponse{}
-	mi := &file_api_strata_proto_msgTypes[11]
+	mi := &file_api_strata_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -566,7 +670,7 @@ func (x *DocSetResponse) String() string {
 func (*DocSetResponse) ProtoMessage() {}
 
 func (x *DocSetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_strata_proto_msgTypes[11]
+	mi := &file_api_strata_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -579,7 +683,7 @@ func (x *DocSetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DocSetResponse.ProtoReflect.Descriptor instead.
 func (*DocSetResponse) Descriptor() ([]byte, []int) {
-	return file_api_strata_proto_rawDescGZIP(), []int{11}
+	return file_api_strata_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *DocSetResponse) GetSuccess() bool {
@@ -599,7 +703,7 @@ type DocGetRequest struct {
 
 func (x *DocGetRequest) Reset() {
 	*x = DocGetRequest{}
-	mi := &file_api_strata_proto_msgTypes[12]
+	mi := &file_api_strata_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -611,7 +715,7 @@ func (x *DocGetRequest) String() string {
 func (*DocGetRequest) ProtoMessage() {}
 
 func (x *DocGetRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_strata_proto_msgTypes[12]
+	mi := &file_api_strata_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -624,7 +728,7 @@ func (x *DocGetRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DocGetRequest.ProtoReflect.Descriptor instead.
 func (*DocGetRequest) Descriptor() ([]byte, []int) {
-	return file_api_strata_proto_rawDescGZIP(), []int{12}
+	return file_api_strata_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *DocGetRequest) GetKey() string {
@@ -651,7 +755,7 @@ type DocGetResponse struct {
 
 func (x *DocGetResponse) Reset() {
 	*x = DocGetResponse{}
-	mi := &file_api_strata_proto_msgTypes[13]
+	mi := &file_api_strata_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -663,7 +767,7 @@ func (x *DocGetResponse) String() string {
 func (*DocGetResponse) ProtoMessage() {}
 
 func (x *DocGetResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_strata_proto_msgTypes[13]
+	mi := &file_api_strata_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -676,7 +780,7 @@ func (x *DocGetResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DocGetResponse.ProtoReflect.Descriptor instead.
 func (*DocGetResponse) Descriptor() ([]byte, []int) {
-	return file_api_strata_proto_rawDescGZIP(), []int{13}
+	return file_api_strata_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *DocGetResponse) GetJson() string {
@@ -702,7 +806,7 @@ type DocDelRequest struct {
 
 func (x *DocDelRequest) Reset() {
 	*x = DocDelRequest{}
-	mi := &file_api_strata_proto_msgTypes[14]
+	mi := &file_api_strata_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -714,7 +818,7 @@ func (x *DocDelRequest) String() string {
 func (*DocDelRequest) ProtoMessage() {}
 
 func (x *DocDelRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_strata_proto_msgTypes[14]
+	mi := &file_api_strata_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -727,7 +831,7 @@ func (x *DocDelRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DocDelRequest.ProtoReflect.Descriptor instead.
 func (*DocDelRequest) Descriptor() ([]byte, []int) {
-	return file_api_strata_proto_rawDescGZIP(), []int{14}
+	return file_api_strata_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *DocDelRequest) GetKey() string {
@@ -746,7 +850,7 @@ type DocDelResponse struct {
 
 func (x *DocDelResponse) Reset() {
 	*x = DocDelResponse{}
-	mi := &file_api_strata_proto_msgTypes[15]
+	mi := &file_api_strata_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -758,7 +862,7 @@ func (x *DocDelResponse) String() string {
 func (*DocDelResponse) ProtoMessage() {}
 
 func (x *DocDelResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_strata_proto_msgTypes[15]
+	mi := &file_api_strata_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -771,7 +875,7 @@ func (x *DocDelResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DocDelResponse.ProtoReflect.Descriptor instead.
 func (*DocDelResponse) Descriptor() ([]byte, []int) {
-	return file_api_strata_proto_rawDescGZIP(), []int{15}
+	return file_api_strata_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *DocDelResponse) GetSuccess() bool {
@@ -779,6 +883,126 @@ func (x *DocDelResponse) GetSuccess() bool {
 		return x.Success
 	}
 	return false
+}
+
+type StreamRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	MutationKey   string                 `protobuf:"bytes,1,opt,name=mutationKey,proto3" json:"mutationKey,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StreamRequest) Reset() {
+	*x = StreamRequest{}
+	mi := &file_api_strata_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StreamRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StreamRequest) ProtoMessage() {}
+
+func (x *StreamRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_api_strata_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StreamRequest.ProtoReflect.Descriptor instead.
+func (*StreamRequest) Descriptor() ([]byte, []int) {
+	return file_api_strata_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *StreamRequest) GetMutationKey() string {
+	if x != nil {
+		return x.MutationKey
+	}
+	return ""
+}
+
+type StreamResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Op            string                 `protobuf:"bytes,1,opt,name=op,proto3" json:"op,omitempty"`
+	Key           string                 `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
+	Value         string                 `protobuf:"bytes,3,opt,name=value,proto3" json:"value,omitempty"`
+	Timestamp     int64                  `protobuf:"varint,4,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
+	Version       int64                  `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StreamResponse) Reset() {
+	*x = StreamResponse{}
+	mi := &file_api_strata_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StreamResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StreamResponse) ProtoMessage() {}
+
+func (x *StreamResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_api_strata_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StreamResponse.ProtoReflect.Descriptor instead.
+func (*StreamResponse) Descriptor() ([]byte, []int) {
+	return file_api_strata_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *StreamResponse) GetOp() string {
+	if x != nil {
+		return x.Op
+	}
+	return ""
+}
+
+func (x *StreamResponse) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
+func (x *StreamResponse) GetValue() string {
+	if x != nil {
+		return x.Value
+	}
+	return ""
+}
+
+func (x *StreamResponse) GetTimestamp() int64 {
+	if x != nil {
+		return x.Timestamp
+	}
+	return 0
+}
+
+func (x *StreamResponse) GetVersion() int64 {
+	if x != nil {
+		return x.Version
+	}
+	return 0
 }
 
 var File_api_strata_proto protoreflect.FileDescriptor
@@ -791,6 +1015,12 @@ const file_api_strata_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\tR\x05value\"'\n" +
 	"\vSetResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"H\n" +
+	"\fSetExRequest\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\tR\x05value\x12\x10\n" +
+	"\x03ttl\x18\x03 \x01(\x03R\x03ttl\")\n" +
+	"\rSetExResponse\x12\x18\n" +
 	"\asuccess\x18\x01 \x01(\bR\asuccess\"\x1e\n" +
 	"\n" +
 	"GetRequest\x12\x10\n" +
@@ -827,18 +1057,28 @@ const file_api_strata_proto_rawDesc = "" +
 	"\rDocDelRequest\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\tR\x03key\"*\n" +
 	"\x0eDocDelResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess2\xad\x04\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\"1\n" +
+	"\rStreamRequest\x12 \n" +
+	"\vmutationKey\x18\x01 \x01(\tR\vmutationKey\"\x80\x01\n" +
+	"\x0eStreamResponse\x12\x0e\n" +
+	"\x02op\x18\x01 \x01(\tR\x02op\x12\x10\n" +
+	"\x03key\x18\x02 \x01(\tR\x03key\x12\x14\n" +
+	"\x05value\x18\x03 \x01(\tR\x05value\x12\x1c\n" +
+	"\ttimestamp\x18\x04 \x01(\x03R\ttimestamp\x12\x18\n" +
+	"\aversion\x18\x05 \x01(\x03R\aversion2\xa3\x05\n" +
 	"\x06Strata\x12.\n" +
 	"\x03Set\x12\x12.Strata.SetRequest\x1a\x13.Strata.SetResponse\x12.\n" +
 	"\x03Get\x12\x12.Strata.GetRequest\x1a\x13.Strata.GetResponse\x12.\n" +
-	"\x03Del\x12\x12.Strata.DelRequest\x1a\x13.Strata.DelResponse\x12:\n" +
+	"\x03Del\x12\x12.Strata.DelRequest\x1a\x13.Strata.DelResponse\x124\n" +
+	"\x05SetEx\x12\x14.Strata.SetExRequest\x1a\x15.Strata.SetExResponse\x12:\n" +
 	"\x05LPush\x12\x17.Strata.ListPushRequest\x1a\x18.Strata.ListPushResponse\x127\n" +
 	"\x04LPop\x12\x16.Strata.ListPopRequest\x1a\x17.Strata.ListPopResponse\x12:\n" +
 	"\x05RPush\x12\x17.Strata.ListPushRequest\x1a\x18.Strata.ListPushResponse\x127\n" +
 	"\x04RPop\x12\x16.Strata.ListPopRequest\x1a\x17.Strata.ListPopResponse\x127\n" +
 	"\x06DocSet\x12\x15.Strata.DocSetRequest\x1a\x16.Strata.DocSetResponse\x127\n" +
 	"\x06DocGet\x12\x15.Strata.DocGetRequest\x1a\x16.Strata.DocGetResponse\x127\n" +
-	"\x06DocDel\x12\x15.Strata.DocDelRequest\x1a\x16.Strata.DocDelResponseB\x10Z\x0estrata/api;apib\x06proto3"
+	"\x06DocDel\x12\x15.Strata.DocDelRequest\x1a\x16.Strata.DocDelResponse\x12>\n" +
+	"\vXReadStream\x12\x15.Strata.StreamRequest\x1a\x16.Strata.StreamResponse0\x01B\x10Z\x0estrata/api;apib\x06proto3"
 
 var (
 	file_api_strata_proto_rawDescOnce sync.Once
@@ -852,48 +1092,56 @@ func file_api_strata_proto_rawDescGZIP() []byte {
 	return file_api_strata_proto_rawDescData
 }
 
-var file_api_strata_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
+var file_api_strata_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_api_strata_proto_goTypes = []any{
 	(*SetRequest)(nil),       // 0: Strata.SetRequest
 	(*SetResponse)(nil),      // 1: Strata.SetResponse
-	(*GetRequest)(nil),       // 2: Strata.GetRequest
-	(*GetResponse)(nil),      // 3: Strata.GetResponse
-	(*DelRequest)(nil),       // 4: Strata.DelRequest
-	(*DelResponse)(nil),      // 5: Strata.DelResponse
-	(*ListPushRequest)(nil),  // 6: Strata.ListPushRequest
-	(*ListPushResponse)(nil), // 7: Strata.ListPushResponse
-	(*ListPopRequest)(nil),   // 8: Strata.ListPopRequest
-	(*ListPopResponse)(nil),  // 9: Strata.ListPopResponse
-	(*DocSetRequest)(nil),    // 10: Strata.DocSetRequest
-	(*DocSetResponse)(nil),   // 11: Strata.DocSetResponse
-	(*DocGetRequest)(nil),    // 12: Strata.DocGetRequest
-	(*DocGetResponse)(nil),   // 13: Strata.DocGetResponse
-	(*DocDelRequest)(nil),    // 14: Strata.DocDelRequest
-	(*DocDelResponse)(nil),   // 15: Strata.DocDelResponse
+	(*SetExRequest)(nil),     // 2: Strata.SetExRequest
+	(*SetExResponse)(nil),    // 3: Strata.SetExResponse
+	(*GetRequest)(nil),       // 4: Strata.GetRequest
+	(*GetResponse)(nil),      // 5: Strata.GetResponse
+	(*DelRequest)(nil),       // 6: Strata.DelRequest
+	(*DelResponse)(nil),      // 7: Strata.DelResponse
+	(*ListPushRequest)(nil),  // 8: Strata.ListPushRequest
+	(*ListPushResponse)(nil), // 9: Strata.ListPushResponse
+	(*ListPopRequest)(nil),   // 10: Strata.ListPopRequest
+	(*ListPopResponse)(nil),  // 11: Strata.ListPopResponse
+	(*DocSetRequest)(nil),    // 12: Strata.DocSetRequest
+	(*DocSetResponse)(nil),   // 13: Strata.DocSetResponse
+	(*DocGetRequest)(nil),    // 14: Strata.DocGetRequest
+	(*DocGetResponse)(nil),   // 15: Strata.DocGetResponse
+	(*DocDelRequest)(nil),    // 16: Strata.DocDelRequest
+	(*DocDelResponse)(nil),   // 17: Strata.DocDelResponse
+	(*StreamRequest)(nil),    // 18: Strata.StreamRequest
+	(*StreamResponse)(nil),   // 19: Strata.StreamResponse
 }
 var file_api_strata_proto_depIdxs = []int32{
 	0,  // 0: Strata.Strata.Set:input_type -> Strata.SetRequest
-	2,  // 1: Strata.Strata.Get:input_type -> Strata.GetRequest
-	4,  // 2: Strata.Strata.Del:input_type -> Strata.DelRequest
-	6,  // 3: Strata.Strata.LPush:input_type -> Strata.ListPushRequest
-	8,  // 4: Strata.Strata.LPop:input_type -> Strata.ListPopRequest
-	6,  // 5: Strata.Strata.RPush:input_type -> Strata.ListPushRequest
-	8,  // 6: Strata.Strata.RPop:input_type -> Strata.ListPopRequest
-	10, // 7: Strata.Strata.DocSet:input_type -> Strata.DocSetRequest
-	12, // 8: Strata.Strata.DocGet:input_type -> Strata.DocGetRequest
-	14, // 9: Strata.Strata.DocDel:input_type -> Strata.DocDelRequest
-	1,  // 10: Strata.Strata.Set:output_type -> Strata.SetResponse
-	3,  // 11: Strata.Strata.Get:output_type -> Strata.GetResponse
-	5,  // 12: Strata.Strata.Del:output_type -> Strata.DelResponse
-	7,  // 13: Strata.Strata.LPush:output_type -> Strata.ListPushResponse
-	9,  // 14: Strata.Strata.LPop:output_type -> Strata.ListPopResponse
-	7,  // 15: Strata.Strata.RPush:output_type -> Strata.ListPushResponse
-	9,  // 16: Strata.Strata.RPop:output_type -> Strata.ListPopResponse
-	11, // 17: Strata.Strata.DocSet:output_type -> Strata.DocSetResponse
-	13, // 18: Strata.Strata.DocGet:output_type -> Strata.DocGetResponse
-	15, // 19: Strata.Strata.DocDel:output_type -> Strata.DocDelResponse
-	10, // [10:20] is the sub-list for method output_type
-	0,  // [0:10] is the sub-list for method input_type
+	4,  // 1: Strata.Strata.Get:input_type -> Strata.GetRequest
+	6,  // 2: Strata.Strata.Del:input_type -> Strata.DelRequest
+	2,  // 3: Strata.Strata.SetEx:input_type -> Strata.SetExRequest
+	8,  // 4: Strata.Strata.LPush:input_type -> Strata.ListPushRequest
+	10, // 5: Strata.Strata.LPop:input_type -> Strata.ListPopRequest
+	8,  // 6: Strata.Strata.RPush:input_type -> Strata.ListPushRequest
+	10, // 7: Strata.Strata.RPop:input_type -> Strata.ListPopRequest
+	12, // 8: Strata.Strata.DocSet:input_type -> Strata.DocSetRequest
+	14, // 9: Strata.Strata.DocGet:input_type -> Strata.DocGetRequest
+	16, // 10: Strata.Strata.DocDel:input_type -> Strata.DocDelRequest
+	18, // 11: Strata.Strata.XReadStream:input_type -> Strata.StreamRequest
+	1,  // 12: Strata.Strata.Set:output_type -> Strata.SetResponse
+	5,  // 13: Strata.Strata.Get:output_type -> Strata.GetResponse
+	7,  // 14: Strata.Strata.Del:output_type -> Strata.DelResponse
+	3,  // 15: Strata.Strata.SetEx:output_type -> Strata.SetExResponse
+	9,  // 16: Strata.Strata.LPush:output_type -> Strata.ListPushResponse
+	11, // 17: Strata.Strata.LPop:output_type -> Strata.ListPopResponse
+	9,  // 18: Strata.Strata.RPush:output_type -> Strata.ListPushResponse
+	11, // 19: Strata.Strata.RPop:output_type -> Strata.ListPopResponse
+	13, // 20: Strata.Strata.DocSet:output_type -> Strata.DocSetResponse
+	15, // 21: Strata.Strata.DocGet:output_type -> Strata.DocGetResponse
+	17, // 22: Strata.Strata.DocDel:output_type -> Strata.DocDelResponse
+	19, // 23: Strata.Strata.XReadStream:output_type -> Strata.StreamResponse
+	12, // [12:24] is the sub-list for method output_type
+	0,  // [0:12] is the sub-list for method input_type
 	0,  // [0:0] is the sub-list for extension type_name
 	0,  // [0:0] is the sub-list for extension extendee
 	0,  // [0:0] is the sub-list for field type_name
@@ -910,7 +1158,7 @@ func file_api_strata_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_api_strata_proto_rawDesc), len(file_api_strata_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   16,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

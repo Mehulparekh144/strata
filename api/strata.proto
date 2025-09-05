@@ -7,6 +7,7 @@ service Strata {
   rpc Set(SetRequest) returns (SetResponse);
   rpc Get(GetRequest) returns (GetResponse);
   rpc Del(DelRequest) returns (DelResponse);
+  rpc SetEx(SetExRequest) returns (SetExResponse);
 
   // List 
   rpc LPush(ListPushRequest) returns (ListPushResponse);
@@ -18,6 +19,9 @@ service Strata {
   rpc DocSet(DocSetRequest) returns (DocSetResponse);
   rpc DocGet(DocGetRequest) returns (DocGetResponse);
   rpc DocDel(DocDelRequest) returns (DocDelResponse);
+
+  // Stream
+  rpc XReadStream(StreamRequest) returns (stream StreamResponse);
 }
 
 // The value is just a unique identifier for the key and not the actual value
@@ -30,6 +34,17 @@ message SetRequest {
 message SetResponse {
   bool success = 1;
 }
+
+message SetExRequest {
+  string key = 1;
+  string value = 2;
+  int64 ttl = 3;
+}
+
+message SetExResponse {
+  bool success = 1;
+}
+
 
 message GetRequest {
   string key = 1;
@@ -93,3 +108,14 @@ message DocDelResponse {
   bool success = 1;
 }
 
+message StreamRequest {
+  string mutationKey = 1;
+}
+
+message StreamResponse {
+  string op = 1;
+  string key = 2;
+  string value = 3;
+  int64 timestamp = 4;
+  int64 version = 5;
+}

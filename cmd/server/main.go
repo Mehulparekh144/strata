@@ -12,6 +12,7 @@ import (
 	"strings"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 )
 
 func main() {
@@ -35,6 +36,9 @@ func main() {
 	grpcServer := grpc.NewServer()
 
 	api.RegisterStrataServer(grpcServer, server)
+
+	// Enable gRPC reflection for grpcurl
+	reflection.Register(grpcServer)
 
 	log.Println(getASCIIWelcome())
 	log.Println("Server is running on port 50051 🚀")

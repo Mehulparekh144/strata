@@ -6,7 +6,6 @@ import (
 	"strata/pkg/ds"
 )
 
-
 func (s *Server) Set(ctx context.Context, req *api.SetRequest) (*api.SetResponse, error) {
 	if err := ds.Set(s.engine, req.Key, req.Value); err != nil {
 		return &api.SetResponse{
@@ -42,5 +41,16 @@ func (s *Server) Del(ctx context.Context, req *api.DelRequest) (*api.DelResponse
 	}
 	return &api.DelResponse{
 		Success: found,
+	}, nil
+}
+
+func (s *Server) SetEx(ctx context.Context, req *api.SetExRequest) (*api.SetExResponse, error) {
+	if err := ds.SetEx(s.engine, req.Key, req.Value, req.Ttl); err != nil {
+		return &api.SetExResponse{
+			Success: false,
+		}, err
+	}
+	return &api.SetExResponse{
+		Success: true,
 	}, nil
 }
