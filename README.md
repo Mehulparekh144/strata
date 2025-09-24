@@ -28,24 +28,9 @@ Strata is designed to be:
 - **Dev Tools**
   - Makefile (`make proto`, `make run`)
   - Pebble store inspection via `pebble db scan ./data`
-
-### 🚧 Coming Soon
-- **Strings**
-  - `SETEX` (TTL support) ⏳
-- **Sorted Sets**
-  - `ZADD`, `ZRANGE`
 - **Streaming**
   - System event stream (all mutations emit events)
   - gRPC streaming API
-- **Cluster**
-  - Sharding (slot‑based, CRC16)
-  - Replication (Raft)
-- **Persistence**
-  - AOF + Snapshots
-- **Advanced**
-  - Multi‑region replication
-  - Observability (metrics, tracing, dashboards)
-  - Admin UI + SDKs
 
 ---
 
@@ -76,13 +61,6 @@ Strata is **not a toy** — it’s a datastore. Follow these rules:
 
 3. **Keys are global**  
    - Use namespaces (`user:123`, `chat:room1`) to avoid collisions.  
-
-4. **TTL (coming soon)**  
-   - Expired keys will be lazily deleted on access.  
-   - Don’t rely on them for precise scheduling.  
-
-5. **No placeholders**  
-   - Every feature is real, backed by Pebble.  
 
 ---
 
